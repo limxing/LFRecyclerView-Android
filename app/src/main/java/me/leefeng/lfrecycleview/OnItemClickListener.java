@@ -8,4 +8,6 @@ package me.leefeng.lfrecycleview;
  */
 public interface OnItemClickListener {
     void onClick(int position);
+
+    void onLongClick(int po);
 }

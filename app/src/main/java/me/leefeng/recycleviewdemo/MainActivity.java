@@ -48,6 +48,11 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     }
 
     @Override
+    public void onLongClick(int po) {
+        Toast.makeText(this, "Long:" + po, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void onRefresh() {
 
         new Handler().postDelayed(new Runnable() {

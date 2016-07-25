@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 /**
  * Created by limxing on 16/7/23.
- *
+ * <p/>
  * https://github.com/limxing
  * Blog: http://www.leefeng.me
  */
@@ -19,7 +19,7 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
     public static final int ITEM_TYPE_HEADER = 0;
     public static final int ITEM_TYPE_CONTENT = 1;
     public static final int ITEM_TYPE_BOTTOM = 2;
-//    private TextView view;
+    //    private TextView view;
     private RecyclerView.Adapter adapter;
 
     //模拟数据
@@ -85,13 +85,19 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
         }
         final int po = position - mHeaderCount;
         adapter.onBindViewHolder(holder, po);
-holder.itemView.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        itemListener.onClick(po);
-    }
-});
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                itemListener.onClick(po);
+            }
+        });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                itemListener.onLongClick(po);
+                return true;
+            }
+        });
     }
 
     @Override
