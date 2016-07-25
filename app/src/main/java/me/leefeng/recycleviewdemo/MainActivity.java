@@ -3,6 +3,7 @@ package me.leefeng.recycleviewdemo;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import me.leefeng.lfrecycleview.LFRecyclerView;
@@ -36,9 +37,9 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         recycleview.setLoadMore(true);
         recycleview.setOnItemClickListener(this);
         recycleview.setLFRecyclerViewListener(this);
+
         adapter=new MainAdapter(list);
         recycleview.setAdapter(adapter);
-
 
     }
 

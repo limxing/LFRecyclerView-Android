@@ -14,12 +14,15 @@ import android.widget.RelativeLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import me.leefeng.recycleviewdemo.R;
 
 
 /**
  * Created by limxing on 16/7/23.
- *
+ * <p/>
  * https://github.com/limxing
  * Blog: http://www.leefeng.me
  */
@@ -46,7 +49,9 @@ public class LFRecyclerView extends RecyclerView {
     private LFRecyclerViewListener mRecyclerViewListener;
     private boolean mPullLoad;
     private TextView mHeaderTimeView;
-    private boolean isNoDateShow=false;
+    private boolean isNoDateShow = false;
+
+
     public LFRecyclerView(Context context) {
         super(context);
         initWithContext(context);
@@ -129,6 +134,7 @@ public class LFRecyclerView extends RecyclerView {
         super.computeScroll();
     }
 
+
     /**
      * stop refresh, reset header view.
      */
@@ -197,7 +203,7 @@ public class LFRecyclerView extends RecyclerView {
             case MotionEvent.ACTION_MOVE:
                 float moveY = ev.getRawY() - mLastY;
                 mLastY = ev.getRawY();
-                if (isRefresh &&!mPullLoad&& layoutManager.findFirstVisibleItemPosition() <= 1 &&
+                if (isRefresh && !mPullLoad && layoutManager.findFirstVisibleItemPosition() <= 1 &&
                         (recyclerViewHeader.getVisiableHeight() > 0 || moveY > 0)) {
                     updateHeaderHeight(moveY / OFFSET_RADIO);
                 } else if (isLoadMore && !mPullRefreshing && !mPullLoad &&
@@ -259,7 +265,6 @@ public class LFRecyclerView extends RecyclerView {
 
         recyclerViewHeader = new LFRecyclerViewHeader(context);
         recyclerViewFooter = new LFRecyclerViewFooter(context);
-
         mHeaderTimeView = (TextView) recyclerViewHeader
                 .findViewById(R.id.lfrecyclerview_header_time);
         mHeaderViewContent = (RelativeLayout) recyclerViewHeader
@@ -344,8 +349,8 @@ public class LFRecyclerView extends RecyclerView {
     /**
      * 设置是否没有数据时显示底部提示
      */
-    private void setNoDateShow(){
-        this.isNoDateShow=true;
+    private void setNoDateShow() {
+        this.isNoDateShow = true;
     }
 
     /**
@@ -354,10 +359,10 @@ public class LFRecyclerView extends RecyclerView {
     @Override
     public void requestLayout() {
         super.requestLayout();
-        if (recyclerViewFooter == null || lfAdapter == null||!isNoDateShow) {
+        if (recyclerViewFooter == null || lfAdapter == null || !isNoDateShow) {
             return;
         }
-        boolean b = lfAdapter.getItemCount() <= (lfAdapter.mHeaderCount + lfAdapter.mBottomCount);
+        boolean b = lfAdapter.getItemCount() <= (lfAdapter.getHFCount());
         recyclerViewFooter.setNoneDataState(b);
         if (b) {
             recyclerViewFooter.hide();
@@ -365,5 +370,6 @@ public class LFRecyclerView extends RecyclerView {
             recyclerViewFooter.show();
         }
     }
+
 
 }

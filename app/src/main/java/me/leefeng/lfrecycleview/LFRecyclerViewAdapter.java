@@ -3,8 +3,12 @@ package me.leefeng.lfrecycleview;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -32,13 +36,19 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
     private OnItemClickListener itemListener;
     private LFRecyclerViewFooter recyclerViewFooter;
     private LFRecyclerViewHeader recyclerViewHeader;
+//    private List<View> headerViewList;
+//    private List<View> footerViewList;
 
     public void setRecyclerViewFooter(LFRecyclerViewFooter recyclerViewFooter) {
         this.recyclerViewFooter = recyclerViewFooter;
+//        footerViewList.add(recyclerViewFooter);
+
     }
 
     public void setRecyclerViewHeader(LFRecyclerViewHeader recyclerViewHeader) {
         this.recyclerViewHeader = recyclerViewHeader;
+//        headerViewList.add(recyclerViewHeader);
+
     }
 
     public void setRefresh(boolean refresh) {
@@ -52,14 +62,17 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
     public LFRecyclerViewAdapter(Context context, RecyclerView.Adapter adapter) {
         mContext = context;
         this.adapter = adapter;
+//        headerViewList=new ArrayList<>();
+//        footerViewList=new ArrayList<>();
     }
 
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         if (viewType == ITEM_TYPE_HEADER) {
             return new HeaderBottomHolder(recyclerViewHeader);
-        } else if (viewType == mHeaderCount) {
+        } else if (viewType == ITEM_TYPE_CONTENT) {
             return adapter.onCreateViewHolder(parent, viewType);
         } else if (viewType == ITEM_TYPE_BOTTOM) {
             return new HeaderBottomHolder(recyclerViewFooter);
@@ -70,6 +83,11 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
     public void setOnItemClickListener(OnItemClickListener itemListener) {
         this.itemListener = itemListener;
     }
+
+    public int getHFCount() {
+        return mHeaderCount + mBottomCount;
+    }
+
 
     class HeaderBottomHolder extends ViewHolder {
 
@@ -85,19 +103,21 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
         }
         final int po = position - mHeaderCount;
         adapter.onBindViewHolder(holder, po);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                itemListener.onClick(po);
-            }
-        });
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                itemListener.onLongClick(po);
-                return true;
-            }
-        });
+        if (itemListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    itemListener.onClick(po);
+                }
+            });
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    itemListener.onLongClick(po);
+                    return true;
+                }
+            });
+        }
     }
 
     @Override
@@ -130,7 +150,7 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
 
     //判断当前item是否是HeadView
     public boolean isHeaderView(int position) {
-        return mHeaderCount != 0 && position < mHeaderCount;
+        return mHeaderCount != 0 && position < mBottomCount;
     }
 
     //判断当前item是否是FooterView
