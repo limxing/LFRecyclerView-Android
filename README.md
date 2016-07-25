@@ -2,7 +2,7 @@
 RecycleView的下拉刷新,上拉加载
 欢迎大家尝试使用!
 
-
+<img src="https://github.com/limxing/LFRecycleView-Android/GIF.gif"/>
 
 
 

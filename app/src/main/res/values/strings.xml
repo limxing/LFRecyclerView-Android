@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RecycleViewDemo</string>
+    <string name="app_name">LFRecycleView</string>
 
     <string name="lfrecyclerview_header_hint_normal">下拉刷新</string>
     <string name="lfrecyclerview_header_hint_ready">松开刷新数据</string>
