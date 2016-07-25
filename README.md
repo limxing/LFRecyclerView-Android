@@ -1,4 +1,4 @@
-# LFRecycleView-Android
+# LFRecyclerView-Android
 RecycleView的下拉刷新,上拉加载,也不需要关心点击长按事件
 
 欢迎大家尝试使用!
