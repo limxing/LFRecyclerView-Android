@@ -1,5 +1,6 @@
 # LFRecycleView-Android
-RecycleView的下拉刷新,上拉加载
+RecycleView的下拉刷新,上拉加载,也不需要关心点击长按事件
+
 欢迎大家尝试使用!
 
 <img src="http://www.leefeng.me/GIF.gif"/>
@@ -10,7 +11,7 @@ RecycleView的下拉刷新,上拉加载
 ```
 recycleview = (LFRecyclerView) findViewById(R.id.recycleview);
 recycleview.setLoadMore(true);//设置为可上拉加载
-recycleview.setOnItemClickListener(this);// 条目点击
+recycleview.setOnItemClickListener(this);// 条目点击,点击和长按监听
 recycleview.setLFRecyclerViewListener(this);//下拉刷新上拉加载监听
 recycleview.hideTimeView();//隐藏时间
 adapter=new MainAdapter(list);
