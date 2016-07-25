@@ -222,7 +222,6 @@ public class LFRecyclerView extends RecyclerView {
                 }
                 if (isLoadMore && mPullLoading && layoutManager.findLastVisibleItemPosition() == lfAdapter.getItemCount() - 1
                         && recyclerViewFooter.getBottomMargin() > PULL_LOAD_MORE_DELTA) {
-                    // invoke load more.
                     recyclerViewFooter.setState(LFRecyclerViewFooter.STATE_LOADING);
                     mPullLoad = true;
                     startLoadMore();

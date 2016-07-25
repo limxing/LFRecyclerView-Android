@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         adapter=new MainAdapter(list);
         recycleview.setAdapter(adapter);
 
+
     }
 
     @Override
@@ -61,8 +62,6 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 
     @Override
     public void onLoadMore() {
-
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
