@@ -4,7 +4,7 @@ RecyclerView的下拉刷新,上拉加载,也不需要关心点击长按事件
 欢迎大家尝试使用!
 
 <img src="http://www.leefeng.me/GIF.gif"/>
-<img src="http://www.leefeng.me/leefeng1.gif"/>
+<img src="http://www.leefeng.me/leefeng1.jpg"/>
 
 
 
