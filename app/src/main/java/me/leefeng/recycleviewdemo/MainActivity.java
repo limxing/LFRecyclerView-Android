@@ -49,12 +49,12 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         adapter = new MainAdapter(list);
         recycleview.setAdapter(adapter);
 
-//        TextView tv = new TextView(MainActivity.this);
-//        tv.setText("这是头部");
-//        tv.setTextColor(Color.WHITE);
-//        tv.setGravity(Gravity.CENTER);
-//        tv.setBackgroundColor(Color.RED);
-//        recycleview.setHeaderView(tv);
+        TextView tv = new TextView(MainActivity.this);
+        tv.setText("这是头部");
+        tv.setTextColor(Color.WHITE);
+        tv.setGravity(Gravity.CENTER);
+        tv.setBackgroundColor(Color.RED);
+        recycleview.setHeaderView(tv);
     }
 
     @Override
