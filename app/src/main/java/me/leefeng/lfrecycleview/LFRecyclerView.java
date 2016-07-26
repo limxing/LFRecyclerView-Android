@@ -57,6 +57,15 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
     private LFRecyclerViewScrollChange scrollerListener;//滑动监听
     private boolean isAutoLoadMore;
 
+    /*添加头*/
+    private View headerView;
+
+    public void setHeaderView(View headerView) {
+        this.headerView = headerView;
+        if (lfAdapter != null) {
+            lfAdapter.setHeaderView(headerView);
+        }
+    }
 
     public LFRecyclerView(Context context) {
         super(context);
@@ -78,6 +87,9 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
         lfAdapter = new LFRecyclerViewAdapter(getContext(), adapter);
         lfAdapter.setRecyclerViewHeader(recyclerViewHeader);
         lfAdapter.setRecyclerViewFooter(recyclerViewFooter);
+        if (headerView != null) {
+            lfAdapter.setHeaderView(headerView);
+        }
         lfAdapter.setLoadMore(isLoadMore);
         lfAdapter.setRefresh(isRefresh);
         lfAdapter.setOnItemClickListener(itemListener);
@@ -145,7 +157,7 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
      * stop refresh, reset header view.
      */
     public void stopRefresh(boolean isSuccess) {
-        lfAdapter.notifyItemChanged(1);
+        lfAdapter.notifyDataSetChanged();
         if (mPullRefreshing) {
             if (isSuccess) {
                 recyclerViewHeader.setState(LFRecyclerViewHeader.STATE_SUCCESS);
@@ -317,30 +329,31 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
         mRecyclerViewListener = l;
     }
 
-
     public void setAutoLoadMore(boolean autoLoadMore) {
         isAutoLoadMore = autoLoadMore;
     }
 
     private int currentLastNum;//自动加载一次
+
     @Override
     public void onScrollChange(View view, int i, int i1, int i2, int i3) {
-        if (isAutoLoadMore&&layoutManager.findLastVisibleItemPosition()==lfAdapter.getItemCount()-1
-                &&currentLastNum!=layoutManager.findLastVisibleItemPosition()){
-            currentLastNum= layoutManager.findLastVisibleItemPosition();
+        if (isAutoLoadMore && (layoutManager.findLastVisibleItemPosition() == lfAdapter.getItemCount()
+                - 1)
+                && currentLastNum != layoutManager.findLastVisibleItemPosition()) {
+            currentLastNum = layoutManager.findLastVisibleItemPosition();
             startLoadMore();
         }
-        if (scrollerListener!=null){
-            scrollerListener.onRecyclerViewScrollChange(view,i,i1,i2,i3);
+        if (scrollerListener != null) {
+            scrollerListener.onRecyclerViewScrollChange(view, i, i1, i2, i3);
         }
     }
 
-    public interface   LFRecyclerViewScrollChange{
-         void onRecyclerViewScrollChange(View view, int i, int i1, int i2, int i3);
+    public interface LFRecyclerViewScrollChange {
+        void onRecyclerViewScrollChange(View view, int i, int i1, int i2, int i3);
     }
 
-    public void setScrollChangeListener(LFRecyclerViewScrollChange listener){
-        this.scrollerListener=listener;
+    public void setScrollChangeListener(LFRecyclerViewScrollChange listener) {
+        this.scrollerListener = listener;
     }
 
 
@@ -404,7 +417,6 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
             recyclerViewFooter.show();
         }
     }
-
 
 
 }

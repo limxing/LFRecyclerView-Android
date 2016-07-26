@@ -1,8 +1,10 @@
 package me.leefeng.recycleviewdemo;
 
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         }
 
         recycleview = (LFRecyclerView) findViewById(R.id.recycleview);
-        recycleview.setLoadMore(true);
+        recycleview.setLoadMore(false);
         recycleview.setRefresh(false);
         recycleview.setAutoLoadMore(true);
         recycleview.setOnItemClickListener(this);
@@ -46,6 +48,12 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         adapter = new MainAdapter(list);
         recycleview.setAdapter(adapter);
 
+        TextView tv = new TextView(MainActivity.this);
+        tv.setText("这是头部");
+        tv.setTextColor(Color.WHITE);
+        tv.setGravity(Gravity.CENTER);
+        tv.setBackgroundColor(Color.RED);
+        recycleview.setHeaderView(tv);
     }
 
     @Override

@@ -33,12 +33,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MasonryView> {
     public void onBindViewHolder(MasonryView holder, int position) {
         holder.textView.setText(list.get(position));
 //        holder.textView.setPadding(0, 20 * position, 0, 0);
-        holder.textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
 
     @Override

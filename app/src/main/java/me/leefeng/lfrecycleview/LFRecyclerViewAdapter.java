@@ -23,6 +23,7 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
     public static final int ITEM_TYPE_HEADER = 0;
     public static final int ITEM_TYPE_CONTENT = 1;
     public static final int ITEM_TYPE_BOTTOM = 2;
+    public static final int ITEM_TYPE_HEADERVIEW = 3;
     //    private TextView view;
     private RecyclerView.Adapter adapter;
 
@@ -37,6 +38,12 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
     private LFRecyclerViewFooter recyclerViewFooter;
     private LFRecyclerViewHeader recyclerViewHeader;
 
+    private View headerView;
+
+    public void setHeaderView(View headerView) {
+        this.headerView = headerView;
+    }
+
     public void setRecyclerViewFooter(LFRecyclerViewFooter recyclerViewFooter) {
         this.recyclerViewFooter = recyclerViewFooter;
     }
@@ -47,9 +54,9 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
 
     public void setRefresh(boolean refresh) {
         isRefresh = refresh;
-        if (refresh){
+        if (refresh) {
             mHeaderCount = 1;
-        }else{
+        } else {
             mHeaderCount = 0;
         }
     }
@@ -73,6 +80,9 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
             return adapter.onCreateViewHolder(parent, viewType);
         } else if (viewType == ITEM_TYPE_BOTTOM) {
             return new HeaderBottomHolder(recyclerViewFooter);
+        } else if (viewType == ITEM_TYPE_HEADERVIEW) {
+
+            return new HeaderBottomHolder(headerView);
         }
         return adapter.onCreateViewHolder(parent, viewType);
     }
@@ -82,7 +92,7 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
     }
 
     public int getHFCount() {
-        return mHeaderCount + mBottomCount;
+        return getheaderViewCount() + mBottomCount;
     }
 
 
@@ -95,10 +105,11 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (isHeaderView(position) || isBottomView(position)) {
+        if (isHeaderView(position) || isBottomView(position) || isCustomHeaderView(position)) {
             return;
         }
-        final int po = position - mHeaderCount;
+        final int po = position - getheaderViewCount();
+
         adapter.onBindViewHolder(holder, po);
         if (itemListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -120,9 +131,7 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         int count = adapter.getItemCount();
-        if (isRefresh) {
-            count = count + mHeaderCount;
-        }
+        count = count + getheaderViewCount();
         if (isLoadMore) {
             count = count + mBottomCount;
         }
@@ -132,14 +141,17 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
+
         if (isHeaderView(position) && isRefresh) {
             //头部View
             return ITEM_TYPE_HEADER;
         } else if (isBottomView(position) && isLoadMore) {
             //底部View
             return ITEM_TYPE_BOTTOM;
-        } else {
+        } else if (isCustomHeaderView(position)) {
             //内容View
+            return ITEM_TYPE_HEADERVIEW;
+        } else {
             return ITEM_TYPE_CONTENT;
         }
     }
@@ -152,6 +164,19 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
 
     //判断当前item是否是FooterView
     public boolean isBottomView(int position) {
-        return mBottomCount != 0 && position >= (mHeaderCount + adapter.getItemCount());
+        return mBottomCount != 0 && position >= (getheaderViewCount() + adapter.getItemCount());
+    }
+
+    //判断当前是否是自定义头部View
+    public boolean isCustomHeaderView(int position) {
+        return headerView != null && position == mHeaderCount;
+    }
+
+    public int getheaderViewCount() {
+        if (headerView != null) {
+            return mHeaderCount + 1;
+        } else {
+            return mHeaderCount;
+        }
     }
 }
