@@ -41,6 +41,9 @@ public class LoadView extends ImageView {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+        if (runnable!=null){
+            runnable.stopload();
+        }
         runnable = null;
     }
 

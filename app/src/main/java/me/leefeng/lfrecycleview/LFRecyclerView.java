@@ -59,6 +59,7 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
 
     /*添加头*/
     private View headerView;
+    private Adapter adapter;
 
     public void setHeaderView(View headerView) {
         this.headerView = headerView;
@@ -84,6 +85,7 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
 
     @Override
     public void setAdapter(Adapter adapter) {
+        this.adapter = adapter;
         lfAdapter = new LFRecyclerViewAdapter(getContext(), adapter);
         lfAdapter.setRecyclerViewHeader(recyclerViewHeader);
         lfAdapter.setRecyclerViewFooter(recyclerViewFooter);
@@ -226,7 +228,7 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
                     updateHeaderHeight(moveY / OFFSET_RADIO);
                 } else if (isLoadMore && !mPullRefreshing && !mPullLoad &&
                         layoutManager.findLastVisibleItemPosition() == lfAdapter.getItemCount() - 1 &&
-                        (recyclerViewFooter.getBottomMargin() > 0 || moveY < 0)) {
+                        (recyclerViewFooter.getBottomMargin() > 0 || moveY < 0) && adapter.getItemCount() > 0) {
                     updateFooterHeight(-moveY / OFFSET_RADIO);
                 }
                 break;
@@ -335,11 +337,17 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
 
     private int currentLastNum;//自动加载一次
 
+    private int num;
+
     @Override
     public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+
+        if (lfAdapter.itemHeight > 0 && num == 0) {
+            num = (int) Math.ceil(getHeight() / lfAdapter.itemHeight);
+        }
         if (isAutoLoadMore && (layoutManager.findLastVisibleItemPosition() == lfAdapter.getItemCount()
                 - 1)
-                && currentLastNum != layoutManager.findLastVisibleItemPosition()) {
+                && currentLastNum != layoutManager.findLastVisibleItemPosition() && num > 0 && adapter.getItemCount() > num) {
             currentLastNum = layoutManager.findLastVisibleItemPosition();
             startLoadMore();
         }
@@ -396,7 +404,7 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
     /**
      * 设置是否没有数据时显示底部提示
      */
-    private void setNoDateShow() {
+    public void setNoDateShow() {
         this.isNoDateShow = true;
     }
 
@@ -415,6 +423,9 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
             recyclerViewFooter.hide();
         } else {
             recyclerViewFooter.show();
+        }
+        if (!isLoadMore) {
+            recyclerViewFooter.hide();
         }
     }
 

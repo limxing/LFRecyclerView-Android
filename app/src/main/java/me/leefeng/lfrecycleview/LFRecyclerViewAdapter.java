@@ -39,6 +39,7 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
     private LFRecyclerViewHeader recyclerViewHeader;
 
     private View headerView;
+    public int itemHeight;
 
     public void setHeaderView(View headerView) {
         this.headerView = headerView;
@@ -92,7 +93,10 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
     }
 
     public int getHFCount() {
-        return getheaderViewCount() + mBottomCount;
+//        if (isLoadMore){
+//            return getheaderViewCount() ;
+//        }
+        return getheaderViewCount()+ mBottomCount;
     }
 
 
@@ -109,8 +113,11 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
             return;
         }
         final int po = position - getheaderViewCount();
-
         adapter.onBindViewHolder(holder, po);
+        if (itemHeight==0){
+            itemHeight=holder.itemView.getHeight();
+
+        }
         if (itemListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -132,9 +139,9 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
     public int getItemCount() {
         int count = adapter.getItemCount();
         count = count + getheaderViewCount();
-        if (isLoadMore) {
+//        if (isLoadMore) {
             count = count + mBottomCount;
-        }
+//        }
         return count;
     }
 
@@ -145,7 +152,7 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
         if (isHeaderView(position) && isRefresh) {
             //头部View
             return ITEM_TYPE_HEADER;
-        } else if (isBottomView(position) && isLoadMore) {
+        } else if (isBottomView(position)) {
             //底部View
             return ITEM_TYPE_BOTTOM;
         } else if (isCustomHeaderView(position)) {
@@ -173,10 +180,13 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
     }
 
     public int getheaderViewCount() {
-        if (headerView != null) {
-            return mHeaderCount + 1;
-        } else {
-            return mHeaderCount;
+        int count = 0;
+        if (isRefresh) {
+            count += 1;
         }
+        if (headerView != null) {
+            count += 1;
+        }
+        return count;
     }
 }
