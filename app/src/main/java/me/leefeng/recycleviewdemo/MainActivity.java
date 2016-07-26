@@ -3,6 +3,7 @@ package me.leefeng.recycleviewdemo;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import me.leefeng.lfrecycleview.OnItemClickListener;
  * https://github.com/limxing
  * Blog: http://www.leefeng.me
  */
-public class MainActivity extends AppCompatActivity implements OnItemClickListener, LFRecyclerView.LFRecyclerViewListener {
+public class MainActivity extends AppCompatActivity implements OnItemClickListener, LFRecyclerView.LFRecyclerViewListener, LFRecyclerView.LFRecyclerViewScrollChange {
 
     private LFRecyclerView recycleview;
     private boolean b;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         recycleview.setAutoLoadMore(true);
         recycleview.setOnItemClickListener(this);
         recycleview.setLFRecyclerViewListener(this);
+        recycleview.setScrollChangeListener(this);
         adapter=new MainAdapter(list);
         recycleview.setAdapter(adapter);
 
@@ -76,5 +78,10 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                 list.add(list.size(),"leefeng.me"+"==onLoadMore");
             }
         }, 2000);
+    }
+
+    @Override
+    public void onRecyclerViewScrollChange(View view, int i, int i1, int i2, int i3) {
+        
     }
 }

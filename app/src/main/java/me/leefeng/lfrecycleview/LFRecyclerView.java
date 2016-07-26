@@ -19,6 +19,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.leefeng.recycleviewdemo.MainActivity;
 import me.leefeng.recycleviewdemo.R;
 
 
@@ -334,10 +335,11 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
         }
     }
 
-    public abstract class LFRecyclerViewScrollChange{
-        abstract void onRecyclerViewScrollChange(View view, int i, int i1, int i2, int i3);
+    public interface   LFRecyclerViewScrollChange{
+         void onRecyclerViewScrollChange(View view, int i, int i1, int i2, int i3);
     }
-    public void setRecyclerViewChangeListener(LFRecyclerViewScrollChange listener){
+
+    public void setScrollChangeListener(LFRecyclerViewScrollChange listener){
         this.scrollerListener=listener;
     }
 
