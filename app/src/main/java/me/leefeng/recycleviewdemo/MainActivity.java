@@ -6,14 +6,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.ArrayList;
+
 import me.leefeng.lfrecycleview.LFRecyclerView;
 import me.leefeng.lfrecycleview.OnItemClickListener;
 
 
 /**
  * Created by limxing on 16/7/23.
- *
+ * <p/>
  * https://github.com/limxing
  * Blog: http://www.leefeng.me
  */
@@ -29,19 +31,19 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        list=new ArrayList<String>();
-        for (int i=0;i<20;i++){
-            list.add("leefeng.me"+i);
+        list = new ArrayList<String>();
+        for (int i = 0; i < 20; i++) {
+            list.add("leefeng.me" + i);
         }
 
         recycleview = (LFRecyclerView) findViewById(R.id.recycleview);
-        recycleview.setLoadMore(false);
+        recycleview.setLoadMore(true);
         recycleview.setRefresh(false);
         recycleview.setAutoLoadMore(true);
         recycleview.setOnItemClickListener(this);
         recycleview.setLFRecyclerViewListener(this);
         recycleview.setScrollChangeListener(this);
-        adapter=new MainAdapter(list);
+        adapter = new MainAdapter(list);
         recycleview.setAdapter(adapter);
 
     }
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
             public void run() {
                 recycleview.stopRefresh(b);
                 b = !b;
-                list.add(0,"leefeng.me"+"==onRefresh");
+                list.add(0, "leefeng.me" + "==onRefresh");
             }
         }, 2000);
     }
@@ -75,13 +77,13 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
             @Override
             public void run() {
                 recycleview.stopLoadMore();
-                list.add(list.size(),"leefeng.me"+"==onLoadMore");
+                list.add(list.size(), "leefeng.me" + "==onLoadMore");
             }
         }, 2000);
     }
 
     @Override
     public void onRecyclerViewScrollChange(View view, int i, int i1, int i2, int i3) {
-        
+
     }
 }

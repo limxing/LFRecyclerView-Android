@@ -248,7 +248,9 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
 
     private void startLoadMore() {
         if (mRecyclerViewListener != null) {
+            recyclerViewFooter.setState(LFRecyclerViewFooter.STATE_LOADING);
             mRecyclerViewListener.onLoadMore();
+
         }
     }
 
@@ -268,7 +270,6 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
 
     private void initWithContext(Context context) {
         mScroller = new Scroller(context, new DecelerateInterpolator());
-
         recyclerViewHeader = new LFRecyclerViewHeader(context);
         recyclerViewFooter = new LFRecyclerViewFooter(context);
         mHeaderTimeView = (TextView) recyclerViewHeader
@@ -307,7 +308,6 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
 
     @Override
     public void setLayoutManager(LayoutManager layoutManager) {
-
         super.setLayoutManager(layoutManager);
         this.layoutManager = (GridLayoutManager) layoutManager;
     }

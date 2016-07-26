@@ -9,11 +9,18 @@ RecyclerView的下拉刷新,上拉加载,也不需要关心点击长按事件
 
 使用和ListView一样
 ```
+/*找到控件*/
 recycleview = (LFRecyclerView) findViewById(R.id.recycleview);
+
+/*设置属性*/
 recycleview.setLoadMore(true);//设置为可上拉加载
+ recycleview.setAutoLoadMore(true);//设置滑动到底部自动加载
 recycleview.setOnItemClickListener(this);// 条目点击,点击和长按监听
 recycleview.setLFRecyclerViewListener(this);//下拉刷新上拉加载监听
+recycleview.setLFRecyclerViewListener(this);//滑动监听
 recycleview.hideTimeView();//隐藏时间
+
+/*添加适配器*/
 adapter=new MainAdapter(list);
 recycleview.setAdapter(adapter);
 
