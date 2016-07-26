@@ -4,6 +4,7 @@ RecyclerView的下拉刷新,上拉加载,也不需要关心点击长按事件
 欢迎大家尝试使用!
 
 <img src="http://www.leefeng.me/GIF.gif"/>
+<img src="http://www.leefeng.me/leefeng1.gif"/>
 
 
 
@@ -13,12 +14,15 @@ RecyclerView的下拉刷新,上拉加载,也不需要关心点击长按事件
 recycleview = (LFRecyclerView) findViewById(R.id.recycleview);
 
 /*设置属性*/
-recycleview.setLoadMore(true);//设置为可上拉加载
- recycleview.setAutoLoadMore(true);//设置滑动到底部自动加载
+recycleview.setLoadMore(true);//设置为可上拉加载,默认false
+ recycleview.setRefresh(true);// 设置为可下拉刷新,默认true
+recycleview.setAutoLoadMore(true);//设置滑动到底部自动加载,默认false
 recycleview.setOnItemClickListener(this);// 条目点击,点击和长按监听
 recycleview.setLFRecyclerViewListener(this);//下拉刷新上拉加载监听
 recycleview.setLFRecyclerViewListener(this);//滑动监听
-recycleview.hideTimeView();//隐藏时间
+recycleview.hideTimeView();//隐藏时间,默认显示时间
+recycleview.setHeaderView(tv);//设置一个头部,只有一个大概满足了多数的要求
+ recycleview.setNoDateShow();//没有数据时,底部显示"没有数据"字样,默认不显示
 
 /*添加适配器*/
 adapter=new MainAdapter(list);
