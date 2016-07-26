@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         recycleview = (LFRecyclerView) findViewById(R.id.recycleview);
         recycleview.setLoadMore(false);
         recycleview.setRefresh(false);
+        recycleview.setAutoLoadMore(true);
         recycleview.setOnItemClickListener(this);
         recycleview.setLFRecyclerViewListener(this);
         adapter=new MainAdapter(list);

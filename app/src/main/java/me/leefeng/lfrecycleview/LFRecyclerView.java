@@ -53,6 +53,8 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
     private boolean mPullLoad;
     private TextView mHeaderTimeView;
     private boolean isNoDateShow = false;
+    private LFRecyclerViewScrollChange scrollerListener;//滑动监听
+    private boolean isAutoLoadMore;
 
 
     public LFRecyclerView(Context context) {
@@ -283,6 +285,7 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
                 });
         GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 1);
         setLayoutManager(gridLayoutManager);
+        setOnScrollChangeListener(this);
     }
 
 
@@ -314,9 +317,28 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
     }
 
 
+    public void setAutoLoadMore(boolean autoLoadMore) {
+        isAutoLoadMore = autoLoadMore;
+    }
+
+    private int currentLastNum;//自动加载一次
     @Override
     public void onScrollChange(View view, int i, int i1, int i2, int i3) {
-        Log.i("leefeng",layoutManager.findLastVisibleItemPosition()+"===");
+        if (isAutoLoadMore&&layoutManager.findLastVisibleItemPosition()==lfAdapter.getItemCount()-1
+                &&currentLastNum!=layoutManager.findLastVisibleItemPosition()){
+            currentLastNum= layoutManager.findLastVisibleItemPosition();
+            startLoadMore();
+        }
+        if (scrollerListener!=null){
+            scrollerListener.onRecyclerViewScrollChange(view,i,i1,i2,i3);
+        }
+    }
+
+    public abstract class LFRecyclerViewScrollChange{
+        abstract void onRecyclerViewScrollChange(View view, int i, int i1, int i2, int i3);
+    }
+    public void setRecyclerViewChangeListener(LFRecyclerViewScrollChange listener){
+        this.scrollerListener=listener;
     }
 
 
