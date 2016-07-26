@@ -2,12 +2,10 @@ package me.leefeng.lfrecycleview;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -16,10 +14,6 @@ import android.widget.RelativeLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import me.leefeng.recycleviewdemo.MainActivity;
 import me.leefeng.recycleviewdemo.R;
 
 

@@ -1,9 +1,3 @@
-/**
- * Created by limxing on 16/7/23.
- *
- * https://github.com/limxing
- * Blog: http://www.leefeng.me
- */
 package me.leefeng.lfrecycleview;
 
 
@@ -17,7 +11,12 @@ import android.widget.TextView;
 
 import me.leefeng.recycleviewdemo.R;
 
-
+/**
+ * Created by limxing on 16/7/23.
+ *
+ * https://github.com/limxing
+ * Blog: http://www.leefeng.me
+ */
 public class LFRecyclerViewFooter extends LinearLayout {
 	public final static int STATE_NORMAL = 0;
 	public final static int STATE_READY = 1;

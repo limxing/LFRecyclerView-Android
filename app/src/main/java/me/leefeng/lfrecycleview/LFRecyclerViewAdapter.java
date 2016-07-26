@@ -3,12 +3,8 @@ package me.leefeng.lfrecycleview;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -93,9 +89,6 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
     }
 
     public int getHFCount() {
-//        if (isLoadMore){
-//            return getheaderViewCount() ;
-//        }
         return getheaderViewCount()+ mBottomCount;
     }
 
