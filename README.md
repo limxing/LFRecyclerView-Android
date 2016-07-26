@@ -18,6 +18,8 @@ adapter=new MainAdapter(list);
 recycleview.setAdapter(adapter);
 
 ```
+
+
 License
 
 ```

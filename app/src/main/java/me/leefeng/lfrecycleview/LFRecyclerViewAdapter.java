@@ -36,23 +36,22 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
     private OnItemClickListener itemListener;
     private LFRecyclerViewFooter recyclerViewFooter;
     private LFRecyclerViewHeader recyclerViewHeader;
-//    private List<View> headerViewList;
-//    private List<View> footerViewList;
 
     public void setRecyclerViewFooter(LFRecyclerViewFooter recyclerViewFooter) {
         this.recyclerViewFooter = recyclerViewFooter;
-//        footerViewList.add(recyclerViewFooter);
-
     }
 
     public void setRecyclerViewHeader(LFRecyclerViewHeader recyclerViewHeader) {
         this.recyclerViewHeader = recyclerViewHeader;
-//        headerViewList.add(recyclerViewHeader);
-
     }
 
     public void setRefresh(boolean refresh) {
         isRefresh = refresh;
+        if (refresh){
+            mHeaderCount = 1;
+        }else{
+            mHeaderCount = 0;
+        }
     }
 
     public void setLoadMore(boolean loadMore) {
@@ -62,8 +61,6 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
     public LFRecyclerViewAdapter(Context context, RecyclerView.Adapter adapter) {
         mContext = context;
         this.adapter = adapter;
-//        headerViewList=new ArrayList<>();
-//        footerViewList=new ArrayList<>();
     }
 
 

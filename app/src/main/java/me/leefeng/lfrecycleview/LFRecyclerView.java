@@ -1,11 +1,13 @@
 package me.leefeng.lfrecycleview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -26,7 +28,8 @@ import me.leefeng.recycleviewdemo.R;
  * https://github.com/limxing
  * Blog: http://www.leefeng.me
  */
-public class LFRecyclerView extends RecyclerView {
+@SuppressLint("NewApi")
+public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeListener {
     private Scroller mScroller;
     private LFRecyclerViewAdapter lfAdapter;
     private boolean isLoadMore;
@@ -139,7 +142,7 @@ public class LFRecyclerView extends RecyclerView {
      * stop refresh, reset header view.
      */
     public void stopRefresh(boolean isSuccess) {
-        lfAdapter.notifyDataSetChanged();
+        lfAdapter.notifyItemChanged(1);
         if (mPullRefreshing) {
             if (isSuccess) {
                 recyclerViewHeader.setState(LFRecyclerViewHeader.STATE_SUCCESS);
@@ -291,6 +294,7 @@ public class LFRecyclerView extends RecyclerView {
     public void setRefresh(boolean b) {
         this.isRefresh = b;
 
+
     }
 
     public void setOnItemClickListener(OnItemClickListener itemListener) {
@@ -307,6 +311,12 @@ public class LFRecyclerView extends RecyclerView {
 
     public void setLFRecyclerViewListener(LFRecyclerViewListener l) {
         mRecyclerViewListener = l;
+    }
+
+
+    @Override
+    public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+        Log.i("leefeng",layoutManager.findLastVisibleItemPosition()+"===");
     }
 
 
@@ -370,6 +380,7 @@ public class LFRecyclerView extends RecyclerView {
             recyclerViewFooter.show();
         }
     }
+
 
 
 }
