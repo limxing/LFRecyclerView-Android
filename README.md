@@ -19,7 +19,7 @@ recycleview.setLoadMore(true);//设置为可上拉加载,默认false
 recycleview.setAutoLoadMore(true);//设置滑动到底部自动加载,默认false
 recycleview.setOnItemClickListener(this);// 条目点击,点击和长按监听
 recycleview.setLFRecyclerViewListener(this);//下拉刷新上拉加载监听
-recycleview.setLFRecyclerViewListener(this);//滑动监听
+recycleview.setScrollChangeListener(this);//滑动监听
 recycleview.hideTimeView();//隐藏时间,默认显示时间
 recycleview.setHeaderView(tv);//设置一个头部,只有一个大概满足了多数的要求
  recycleview.setNoDateShow();//没有数据时,底部显示"没有数据"字样,默认不显示
