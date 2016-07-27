@@ -94,6 +94,9 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
         mRecyclerViewListener=null;
         mHeaderTimeView=null;
         scrollerListener=null;
+        headerView=null;
+        adapter=null;
+        observer=null;
     }
 
     @Override
