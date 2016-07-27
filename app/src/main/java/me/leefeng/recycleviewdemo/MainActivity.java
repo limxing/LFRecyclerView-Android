@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         setContentView(R.layout.activity_main);
 
         list = new ArrayList<String>();
-        for (int i = 0; i < 0; i++) {
+        for (int i = 0; i < 10; i++) {
             list.add("leefeng.me" + i);
         }
 
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         recycleview.setOnItemClickListener(this);
         recycleview.setLFRecyclerViewListener(this);
         recycleview.setScrollChangeListener(this);
+        recycleview.setItemAnimator(new DefaultItemAnimator());
         adapter = new MainAdapter(list);
         recycleview.setAdapter(adapter);
 
@@ -69,13 +71,13 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 
     @Override
     public void onRefresh() {
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                recycleview.stopRefresh(b);
                 b = !b;
                 list.add(0, "leefeng.me" + "==onRefresh");
+                recycleview.stopRefresh(b);
+                adapter.notifyItemInserted(0);
             }
         }, 2000);
     }
@@ -87,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
             public void run() {
                 recycleview.stopLoadMore();
                 list.add(list.size(), "leefeng.me" + "==onLoadMore");
+                adapter.notifyItemInserted(list.size()-1);
             }
         }, 2000);
     }

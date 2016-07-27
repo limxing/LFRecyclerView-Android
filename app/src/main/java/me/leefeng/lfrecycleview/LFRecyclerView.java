@@ -19,7 +19,7 @@ import me.leefeng.recycleviewdemo.R;
 
 /**
  * Created by limxing on 16/7/23.
- * <p/>
+ * <p>
  * https://github.com/limxing
  * Blog: http://www.leefeng.me
  */
@@ -54,6 +54,7 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
     /*添加头*/
     private View headerView;
     private Adapter adapter;
+    private LFAdapterDataObserver observer;
 
     public void setHeaderView(View headerView) {
         this.headerView = headerView;
@@ -78,8 +79,27 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
     }
 
     @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (adapter!=null){
+            adapter.unregisterAdapterDataObserver(observer);
+        }
+        mScroller=null;
+        lfAdapter=null;
+        itemListener=null;
+        recyclerViewFooter=null;
+        recyclerViewHeader=null;
+        mHeaderViewContent=null;
+        layoutManager=null;
+        mRecyclerViewListener=null;
+        mHeaderTimeView=null;
+        scrollerListener=null;
+    }
+
+    @Override
     public void setAdapter(Adapter adapter) {
         this.adapter = adapter;
+        adapter.registerAdapterDataObserver(observer);
         lfAdapter = new LFRecyclerViewAdapter(getContext(), adapter);
         lfAdapter.setRecyclerViewHeader(recyclerViewHeader);
         lfAdapter.setRecyclerViewFooter(recyclerViewFooter);
@@ -153,7 +173,7 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
      * stop refresh, reset header view.
      */
     public void stopRefresh(boolean isSuccess) {
-        lfAdapter.notifyDataSetChanged();
+//        lfAdapter.notifyDataSetChanged();
         if (mPullRefreshing) {
             if (isSuccess) {
                 recyclerViewHeader.setState(LFRecyclerViewHeader.STATE_SUCCESS);
@@ -266,7 +286,7 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
      * stop load more, reset footer view.
      */
     public void stopLoadMore() {
-        lfAdapter.notifyDataSetChanged();
+//        lfAdapter.notifyDataSetChanged();
         if (mPullLoading) {
             mPullLoad = false;
             mPullLoading = false;
@@ -296,6 +316,46 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
         GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 1);
         setLayoutManager(gridLayoutManager);
         setOnScrollChangeListener(this);
+        observer = new LFAdapterDataObserver();
+    }
+
+    class LFAdapterDataObserver extends AdapterDataObserver {
+        @Override
+        public void onChanged() {
+//            super.onChanged();
+            lfAdapter.notifyDataSetChanged();
+        }
+
+
+        @Override
+        public void onItemRangeChanged(int positionStart, int itemCount) {
+//            super.onItemRangeChanged(positionStart + lfAdapter.getheaderViewCount(), itemCount);
+            lfAdapter.notifyItemRangeChanged(positionStart + lfAdapter.getheaderViewCount(), itemCount);
+        }
+
+        @Override
+        public void onItemRangeChanged(int positionStart, int itemCount, Object payload) {
+//            super.onItemRangeChanged(positionStart + lfAdapter.getheaderViewCount(), itemCount, payload);
+            lfAdapter.notifyItemRangeChanged(positionStart + lfAdapter.getheaderViewCount(), itemCount, payload);
+        }
+
+        @Override
+        public void onItemRangeInserted(int positionStart, int itemCount) {
+//            super.onItemRangeInserted(positionStart + lfAdapter.getheaderViewCount(), itemCount);
+            lfAdapter.notifyItemRangeInserted(positionStart + lfAdapter.getheaderViewCount(), itemCount);
+        }
+
+        @Override
+        public void onItemRangeRemoved(int positionStart, int itemCount) {
+//            super.onItemRangeRemoved(positionStart + lfAdapter.getheaderViewCount(), itemCount);
+            lfAdapter.notifyItemRangeRemoved(positionStart + lfAdapter.getheaderViewCount(), itemCount);
+        }
+
+        @Override
+        public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
+//            super.onItemRangeMoved(fromPosition + lfAdapter.getheaderViewCount(), toPosition + lfAdapter.getheaderViewCount(), itemCount);
+        lfAdapter.notifyItemMoved(fromPosition + lfAdapter.getheaderViewCount(), toPosition + lfAdapter.getheaderViewCount());
+        }
     }
 
 

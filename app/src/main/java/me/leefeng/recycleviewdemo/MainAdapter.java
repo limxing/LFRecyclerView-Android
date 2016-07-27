@@ -51,7 +51,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MasonryView> {
         }
 
     }
-
 }
 
 

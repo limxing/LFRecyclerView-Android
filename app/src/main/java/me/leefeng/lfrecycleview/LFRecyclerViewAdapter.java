@@ -65,7 +65,9 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
     public LFRecyclerViewAdapter(Context context, RecyclerView.Adapter adapter) {
         mContext = context;
         this.adapter = adapter;
+
     }
+    
 
 
     @Override
