@@ -1,4 +1,4 @@
-package me.leefeng.lfrecycleview;
+package me.leefeng.recycleviewdemo.lfrecycleview;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

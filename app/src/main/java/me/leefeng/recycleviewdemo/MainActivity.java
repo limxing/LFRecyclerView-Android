@@ -12,8 +12,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import me.leefeng.lfrecycleview.LFRecyclerView;
-import me.leefeng.lfrecycleview.OnItemClickListener;
+import me.leefeng.recycleviewdemo.lfrecycleview.LFRecyclerView;
+import me.leefeng.recycleviewdemo.lfrecycleview.OnItemClickListener;
 
 
 /**
@@ -23,7 +23,6 @@ import me.leefeng.lfrecycleview.OnItemClickListener;
  * Blog: http://www.leefeng.me
  */
 public class MainActivity extends AppCompatActivity implements OnItemClickListener, LFRecyclerView.LFRecyclerViewListener, LFRecyclerView.LFRecyclerViewScrollChange {
-
     private LFRecyclerView recycleview;
     private boolean b;
     private ArrayList<String> list;
@@ -97,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     }
 
     @Override
-    public void onRecyclerViewScrollChange(View view, int i, int i1, int i2, int i3) {
+    public void onRecyclerViewScrollChange(View view, int i, int i1) {
 
     }
 }

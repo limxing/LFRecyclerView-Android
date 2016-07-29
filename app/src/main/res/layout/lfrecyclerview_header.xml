@@ -50,7 +50,7 @@
             android:src="@drawable/default_ptr_flip" />
 
 
-        <me.leefeng.lfrecycleview.LoadView
+        <me.leefeng.recycleviewdemo.lfrecycleview.LoadView
             android:id="@+id/lfrecyclerview_header_progressbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

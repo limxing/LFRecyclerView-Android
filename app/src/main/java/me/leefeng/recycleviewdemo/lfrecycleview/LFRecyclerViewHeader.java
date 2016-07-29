@@ -1,4 +1,4 @@
-package me.leefeng.lfrecycleview;
+package me.leefeng.recycleviewdemo.lfrecycleview;
 
 import android.content.Context;
 import android.content.SharedPreferences;

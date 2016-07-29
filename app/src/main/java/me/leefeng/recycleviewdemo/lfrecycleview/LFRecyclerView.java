@@ -1,10 +1,10 @@
-package me.leefeng.lfrecycleview;
+package me.leefeng.recycleviewdemo.lfrecycleview;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,8 +23,7 @@ import me.leefeng.recycleviewdemo.R;
  * https://github.com/limxing
  * Blog: http://www.leefeng.me
  */
-@SuppressLint("NewApi")
-public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeListener {
+public class LFRecyclerView extends RecyclerView {
     private Scroller mScroller;
     private LFRecyclerViewAdapter lfAdapter;
     private boolean isLoadMore;
@@ -318,7 +317,14 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
                 });
         GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 1);
         setLayoutManager(gridLayoutManager);
-        setOnScrollChangeListener(this);
+//        setOnScrollChangeListener(this);
+        setOnScrollListener(new OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+                onScrollChange(recyclerView,dx,dy);
+            }
+        });
         observer = new LFAdapterDataObserver();
     }
 
@@ -396,8 +402,8 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
 
     private int num;
 
-    @Override
-    public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+//    @Override
+    public void onScrollChange(View view, int i, int i1) {
 
         if (lfAdapter.itemHeight > 0 && num == 0) {
             num = (int) Math.ceil(getHeight() / lfAdapter.itemHeight);
@@ -409,12 +415,12 @@ public class LFRecyclerView extends RecyclerView implements View.OnScrollChangeL
             startLoadMore();
         }
         if (scrollerListener != null) {
-            scrollerListener.onRecyclerViewScrollChange(view, i, i1, i2, i3);
+            scrollerListener.onRecyclerViewScrollChange(view, i, i1);
         }
     }
 
-    public interface LFRecyclerViewScrollChange {
-        void onRecyclerViewScrollChange(View view, int i, int i1, int i2, int i3);
+    public interface LFRecyclerViewScrollChange  {
+        void onRecyclerViewScrollChange(View view, int i, int i1);
     }
 
     public void setScrollChangeListener(LFRecyclerViewScrollChange listener) {
