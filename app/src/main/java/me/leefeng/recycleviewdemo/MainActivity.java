@@ -9,11 +9,10 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 
-import me.leefeng.recycleviewdemo.lfrecycleview.LFRecyclerView;
-import me.leefeng.recycleviewdemo.lfrecycleview.OnItemClickListener;
+import me.leefeng.lfrecycleview.LFRecyclerView;
+import me.leefeng.lfrecycleview.OnItemClickListener;
 
 
 /**

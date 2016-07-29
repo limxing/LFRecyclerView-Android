@@ -1,4 +1,4 @@
-package me.leefeng.recycleviewdemo.lfrecycleview;
+package me.leefeng.lfrecycleview;
 
 
 import android.content.Context;

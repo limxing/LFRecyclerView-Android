@@ -1,4 +1,4 @@
-package me.leefeng.recycleviewdemo.lfrecycleview;
+package me.leefeng.lfrecycleview;
 
 /**
  * Created by limxing on 16/7/23.
