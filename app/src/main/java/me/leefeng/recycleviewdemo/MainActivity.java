@@ -89,7 +89,9 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
             public void run() {
                 recycleview.stopLoadMore();
                 list.add(list.size(), "leefeng.me" + "==onLoadMore");
-                adapter.notifyItemInserted(list.size()-1);
+                list.add(list.size(), "leefeng.me" + "==onLoadMore");
+                adapter.notifyItemRangeInserted(list.size()-1,2);
+
             }
         }, 2000);
     }

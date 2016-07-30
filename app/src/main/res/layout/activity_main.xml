@@ -6,6 +6,7 @@
     tools:context="me.leefeng.recycleviewdemo.MainActivity">
 
    <me.leefeng.lfrecycleview.LFRecyclerView
+       android:background="#fff"
        android:id="@+id/recycleview"
        android:layout_width="match_parent"
        android:layout_height="match_parent"></me.leefeng.lfrecycleview.LFRecyclerView>

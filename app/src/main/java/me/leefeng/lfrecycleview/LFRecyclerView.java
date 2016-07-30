@@ -401,7 +401,12 @@ public class LFRecyclerView extends RecyclerView {
 
     private int num;
 
-//    @Override
+    /**
+     * 执行滑动方法
+     * @param view
+     * @param i
+     * @param i1
+     */
     public void onScrollChange(View view, int i, int i1) {
 
         if (lfAdapter.itemHeight > 0 && num == 0) {
@@ -422,6 +427,10 @@ public class LFRecyclerView extends RecyclerView {
         void onRecyclerViewScrollChange(View view, int i, int i1);
     }
 
+    /**
+     * 设置滑动监听
+     * @param listener
+     */
     public void setScrollChangeListener(LFRecyclerViewScrollChange listener) {
         this.scrollerListener = listener;
     }
