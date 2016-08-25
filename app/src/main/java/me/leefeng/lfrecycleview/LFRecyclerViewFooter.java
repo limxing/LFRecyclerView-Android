@@ -49,10 +49,8 @@ public class LFRecyclerViewFooter extends LinearLayout {
 			mHintView.setVisibility(View.VISIBLE);
 			mHintView.setText(R.string.lfrecyclerview_footer_hint_ready);
 		} else if (state == STATE_LOADING) {
-			lfrecyclerview_footer_loadview.startLoad();
 			mProgressBar.setVisibility(View.VISIBLE);
 		} else {
-			lfrecyclerview_footer_loadview.stopLoad();
 			mHintView.setVisibility(View.VISIBLE);
 			mHintView.setText(R.string.lfrecyclerview_footer_hint_normal);
 		}

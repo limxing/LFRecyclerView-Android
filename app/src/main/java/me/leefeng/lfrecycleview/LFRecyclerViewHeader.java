@@ -113,11 +113,9 @@ public class LFRecyclerViewHeader extends LinearLayout {
                 }
                 break;
             case STATE_REFRESHING:
-                mProgressBar.startLoad();
                 mHintTextView.setText(R.string.lfrecyclerview_header_hint_loading);
                 break;
             case STATE_SUCCESS:
-                mProgressBar.stopLoad();
                 mHintTextView.setText(R.string.lfrecyclerview_header_hint_success);
                 mArrowImageView.setImageResource(R.drawable.lfrecyclerview_success);
                 SharedPreferences.Editor editor = preferences.edit();//获取编辑器
@@ -125,7 +123,6 @@ public class LFRecyclerViewHeader extends LinearLayout {
                 editor.commit();//提交修改
                 break;
             case STATE_FRESH_FAILT:
-                mProgressBar.stopLoad();
                 mHintTextView.setText(R.string.lfrecyclerview_header_hint_failt);
                 mArrowImageView.setImageResource(R.drawable.lfrecyclerview_error);
                 SharedPreferences.Editor editor1 = preferences.edit();//获取编辑器

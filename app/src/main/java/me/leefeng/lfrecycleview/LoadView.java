@@ -51,7 +51,9 @@ public class LoadView extends ImageView {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         runnable = new MyRunable(this);
-        startLoad();
+        if (runnable != null && !runnable.flag) {
+            runnable.startload();
+        }
     }
 
     private void init() {
@@ -62,17 +64,17 @@ public class LoadView extends ImageView {
         height = bitmap.getHeight() / 2;
     }
 
-    public void startLoad() {
-        if (runnable != null && !runnable.flag) {
-            runnable.startload();
-        }
-    }
-
-    public void stopLoad() {
-        if (runnable != null) {
-            runnable.stopload();
-        }
-    }
+//    public void startLoad() {
+//        if (runnable != null && !runnable.flag) {
+//            runnable.startload();
+//        }
+//    }
+//
+//    public void stopLoad() {
+//        if (runnable != null) {
+//            runnable.stopload();
+//        }
+//    }
 
     static class MyRunable implements Runnable {
         private boolean flag;
