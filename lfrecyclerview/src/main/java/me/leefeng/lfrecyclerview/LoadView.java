@@ -1,4 +1,4 @@
-package me.leefeng.lfrecycleview;
+package me.leefeng.lfrecyclerview;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,10 +7,7 @@ import android.graphics.Matrix;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-
 import java.lang.ref.SoftReference;
-
-import me.leefeng.recycleviewdemo.R;
 
 /**
  * Created by limxing on 16/7/23.
@@ -63,18 +60,6 @@ public class LoadView extends ImageView {
         width = bitmap.getWidth() / 2;
         height = bitmap.getHeight() / 2;
     }
-
-//    public void startLoad() {
-//        if (runnable != null && !runnable.flag) {
-//            runnable.startload();
-//        }
-//    }
-//
-//    public void stopLoad() {
-//        if (runnable != null) {
-//            runnable.stopload();
-//        }
-//    }
 
     static class MyRunable implements Runnable {
         private boolean flag;

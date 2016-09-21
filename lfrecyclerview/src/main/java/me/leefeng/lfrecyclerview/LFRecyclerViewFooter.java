@@ -1,4 +1,4 @@
-package me.leefeng.lfrecycleview;
+package me.leefeng.lfrecyclerview;
 
 
 import android.content.Context;
@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import me.leefeng.recycleviewdemo.R;
 
 /**
  * Created by limxing on 16/7/23.

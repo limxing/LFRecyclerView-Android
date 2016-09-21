@@ -1,4 +1,4 @@
-package me.leefeng.lfrecycleview;
+package me.leefeng.lfrecyclerview;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,8 +12,6 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import me.leefeng.recycleviewdemo.R;
 
 /**
  * Created by limxing on 16/7/23.

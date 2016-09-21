@@ -11,8 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 
-import me.leefeng.lfrecycleview.LFRecyclerView;
-import me.leefeng.lfrecycleview.OnItemClickListener;
+import me.leefeng.lfrecyclerview.LFRecyclerView;
+import me.leefeng.lfrecyclerview.OnItemClickListener;
 
 
 /**

@@ -5,9 +5,9 @@
     android:layout_height="match_parent"
     tools:context="me.leefeng.recycleviewdemo.MainActivity">
 
-   <me.leefeng.lfrecycleview.LFRecyclerView
+   <me.leefeng.lfrecyclerview.LFRecyclerView
        android:background="#fff"
        android:id="@+id/recycleview"
        android:layout_width="match_parent"
-       android:layout_height="match_parent"></me.leefeng.lfrecycleview.LFRecyclerView>
+       android:layout_height="match_parent"></me.leefeng.lfrecyclerview.LFRecyclerView>
 </RelativeLayout>

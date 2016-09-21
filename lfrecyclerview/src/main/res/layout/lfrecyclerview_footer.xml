@@ -30,7 +30,7 @@
             android:orientation="horizontal"
             android:visibility="invisible">
 
-            <me.leefeng.lfrecycleview.LoadView
+            <me.leefeng.lfrecyclerview.LoadView
                 android:id="@+id/lfrecyclerview_footer_loadview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

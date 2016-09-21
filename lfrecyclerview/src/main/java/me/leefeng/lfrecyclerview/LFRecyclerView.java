@@ -1,4 +1,4 @@
-package me.leefeng.lfrecycleview;
+package me.leefeng.lfrecyclerview;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -12,8 +12,6 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.RelativeLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
-
-import me.leefeng.recycleviewdemo.R;
 
 
 /**
