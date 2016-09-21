@@ -10,6 +10,10 @@ RecyclerView的下拉刷新,上拉加载,也不需要关心点击长按事件
 
 使用和ListView一样
 ```
+
+引入
+compile 'me.leefeng:lfrecyclerview:1.0.1'
+
 /*找到控件*/
 recycleview = (LFRecyclerView) findViewById(R.id.recycleview);
 
