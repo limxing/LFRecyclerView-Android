@@ -44,8 +44,8 @@ public class LFRecyclerViewHeader extends LinearLayout {
     }
 
     /**
-     * @param context
-     * @param attrs
+     * @param context context
+     * @param attrs att
      */
     public LFRecyclerViewHeader(Context context, AttributeSet attrs) {
         super(context, attrs);

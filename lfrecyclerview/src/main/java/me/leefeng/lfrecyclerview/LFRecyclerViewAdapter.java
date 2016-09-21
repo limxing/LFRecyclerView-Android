@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 /**
  * Created by limxing on 16/7/23.
- * <p/>
+ *
  * https://github.com/limxing
  * Blog: http://www.leefeng.me
  */

@@ -53,6 +53,14 @@ install {
 
                 }
 
+                dependencies {
+                    groupId "com.android.support"
+                    artifactId "recyclerview-v7"
+                    version "24.0.0"
+                    //同dependencies
+                }
+
+
                 scm {
 
                     connection gitUrl

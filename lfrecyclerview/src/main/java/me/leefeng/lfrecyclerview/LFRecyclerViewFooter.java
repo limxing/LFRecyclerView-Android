@@ -118,7 +118,7 @@ public class LFRecyclerViewFooter extends LinearLayout {
 	/**
 	 * 设置是否显示有无数据有好提示
 	 *
-	 * @param isNone
+	 * @param isNone isNone
 	 */
 	public void setNoneDataState(boolean isNone) {
 		if (isNone) {

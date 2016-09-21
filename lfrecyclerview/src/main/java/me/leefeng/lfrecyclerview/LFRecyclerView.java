@@ -1,7 +1,6 @@
 package me.leefeng.lfrecyclerview;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -64,12 +63,12 @@ public class LFRecyclerView extends RecyclerView {
         initWithContext(context);
     }
 
-    public LFRecyclerView(Context context, @Nullable AttributeSet attrs) {
+    public LFRecyclerView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initWithContext(context);
     }
 
-    public LFRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public LFRecyclerView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         initWithContext(context);
     }
@@ -168,9 +167,7 @@ public class LFRecyclerView extends RecyclerView {
     }
 
 
-    /**
-     * stop refresh, reset header view.
-     */
+
     public void stopRefresh(boolean isSuccess) {
 //        lfAdapter.notifyDataSetChanged();
         if (mPullRefreshing) {
@@ -400,10 +397,10 @@ public class LFRecyclerView extends RecyclerView {
     private int num;
 
     /**
-     * 执行滑动方法
-     * @param view
-     * @param i
-     * @param i1
+     *
+     * @param view view
+     * @param i i
+     * @param i1 ii
      */
     public void onScrollChange(View view, int i, int i1) {
 
@@ -427,7 +424,8 @@ public class LFRecyclerView extends RecyclerView {
 
     /**
      * 设置滑动监听
-     * @param listener
+     *
+     * @param listener jianting
      */
     public void setScrollChangeListener(LFRecyclerViewScrollChange listener) {
         this.scrollerListener = listener;
@@ -455,7 +453,7 @@ public class LFRecyclerView extends RecyclerView {
     /**
      * 设置底部文字
      *
-     * @param text
+     * @param text wenzi
      */
     public void setFootText(String text) {
         recyclerViewFooter.getmHintView().setText(text);
@@ -464,7 +462,7 @@ public class LFRecyclerView extends RecyclerView {
     /**
      * 设置头部文字
      *
-     * @param header
+     * @param header wenzi
      */
     public void setHeaderText(String header) {
         recyclerViewHeader.getmHintTextView().setText(header);
