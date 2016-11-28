@@ -76,22 +76,22 @@ public class LFRecyclerView extends RecyclerView {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (adapter!=null){
-            adapter.unregisterAdapterDataObserver(observer);
-        }
-        mScroller=null;
-        lfAdapter=null;
-        itemListener=null;
-        recyclerViewFooter=null;
-        recyclerViewHeader=null;
-        mHeaderViewContent=null;
-        layoutManager=null;
-        mRecyclerViewListener=null;
-        mHeaderTimeView=null;
-        scrollerListener=null;
-        headerView=null;
-        adapter=null;
-        observer=null;
+//        if (adapter!=null){
+//            adapter.unregisterAdapterDataObserver(observer);
+//        }
+//        mScroller=null;
+//        lfAdapter=null;
+//        itemListener=null;
+//        recyclerViewFooter=null;
+//        recyclerViewHeader=null;
+//        mHeaderViewContent=null;
+//        layoutManager=null;
+//        mRecyclerViewListener=null;
+//        mHeaderTimeView=null;
+//        scrollerListener=null;
+//        headerView=null;
+//        adapter=null;
+//        observer=null;
     }
 
     @Override
@@ -155,7 +155,10 @@ public class LFRecyclerView extends RecyclerView {
      */
     @Override
     public void computeScroll() {
-        if (mScroller.computeScrollOffset()) {
+//        if (mScroller==null){
+//            initWithContext(getContext());
+//        }
+        if (mScroller!=null&&mScroller.computeScrollOffset()) {
             if (mScrollBack == SCROLLBACK_HEADER) {
                 recyclerViewHeader.setVisiableHeight(mScroller.getCurrY());
             } else {

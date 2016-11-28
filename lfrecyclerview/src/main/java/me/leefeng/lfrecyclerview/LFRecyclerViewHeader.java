@@ -230,9 +230,7 @@ public class LFRecyclerViewHeader extends LinearLayout {
         } else {
             timeIntoFormat = timePassed / ONE_YEAR;
             String value = timeIntoFormat + "年";
-            updateAtValue = String.format(getResources().getString(R.string.updated_at),
-
-                    value);
+            updateAtValue = String.format(getResources().getString(R.string.updated_at),value);
         }
         lfrecyclerview_header_time.setText(updateAtValue);
     }
