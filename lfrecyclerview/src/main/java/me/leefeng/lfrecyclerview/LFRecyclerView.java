@@ -367,6 +367,9 @@ public class LFRecyclerView extends RecyclerView {
 
     public void setLoadMore(boolean b) {
         this.isLoadMore = b;
+        if (!isLoadMore) {
+            recyclerViewFooter.hide();
+        }
 
     }
 
