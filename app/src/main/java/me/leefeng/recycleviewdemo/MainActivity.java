@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         setContentView(R.layout.activity_main);
 
         list = new ArrayList<String>();
-        for (int i = 0; i < 10; i++) {
-            list.add("leefeng.me" + i);
-        }
+//        for (int i = 0; i < 10; i++) {
+//            list.add("leefeng.me" + i);
+//        }
 
         recycleview = (LFRecyclerView) findViewById(R.id.recycleview);
         recycleview.setLoadMore(true);
@@ -89,8 +89,8 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
             public void run() {
                 recycleview.stopLoadMore();
                 list.add(list.size(), "leefeng.me" + "==onLoadMore");
-                list.add(list.size(), "leefeng.me" + "==onLoadMore");
-                adapter.notifyItemRangeInserted(list.size()-1,2);
+//                list.add(list.size(), "leefeng.me" + "==onLoadMore");
+                adapter.notifyItemRangeInserted(list.size()-1,1);
 
             }
         }, 2000);

@@ -158,7 +158,7 @@ public class LFRecyclerView extends RecyclerView {
 //        if (mScroller==null){
 //            initWithContext(getContext());
 //        }
-        if (mScroller!=null&&mScroller.computeScrollOffset()) {
+        if (mScroller != null && mScroller.computeScrollOffset()) {
             if (mScrollBack == SCROLLBACK_HEADER) {
                 recyclerViewHeader.setVisiableHeight(mScroller.getCurrY());
             } else {
@@ -168,7 +168,6 @@ public class LFRecyclerView extends RecyclerView {
         }
         super.computeScroll();
     }
-
 
 
     public void stopRefresh(boolean isSuccess) {
@@ -260,7 +259,8 @@ public class LFRecyclerView extends RecyclerView {
 
                 }
                 if (isLoadMore && mPullLoading && layoutManager.findLastVisibleItemPosition() == lfAdapter.getItemCount() - 1
-                        && recyclerViewFooter.getBottomMargin() > PULL_LOAD_MORE_DELTA) {
+                        && recyclerViewFooter.getBottomMargin() > PULL_LOAD_MORE_DELTA
+                        ) {
                     recyclerViewFooter.setState(LFRecyclerViewFooter.STATE_LOADING);
                     mPullLoad = true;
                     startLoadMore();
@@ -319,7 +319,7 @@ public class LFRecyclerView extends RecyclerView {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
 //                super.onScrolled(recyclerView, dx, dy);
-                onScrollChange(recyclerView,dx,dy);
+                onScrollChange(recyclerView, dx, dy);
             }
         });
         observer = new LFAdapterDataObserver();
@@ -360,7 +360,7 @@ public class LFRecyclerView extends RecyclerView {
         @Override
         public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
 //            super.onItemRangeMoved(fromPosition + lfAdapter.getheaderViewCount(), toPosition + lfAdapter.getheaderViewCount(), itemCount);
-        lfAdapter.notifyItemMoved(fromPosition + lfAdapter.getheaderViewCount(), toPosition + lfAdapter.getheaderViewCount());
+            lfAdapter.notifyItemMoved(fromPosition + lfAdapter.getheaderViewCount(), toPosition + lfAdapter.getheaderViewCount());
         }
     }
 
@@ -403,10 +403,9 @@ public class LFRecyclerView extends RecyclerView {
     private int num;
 
     /**
-     *
      * @param view view
-     * @param i i
-     * @param i1 ii
+     * @param i    i
+     * @param i1   ii
      */
     public void onScrollChange(View view, int i, int i1) {
 
@@ -415,8 +414,12 @@ public class LFRecyclerView extends RecyclerView {
         }
         if (isAutoLoadMore && (layoutManager.findLastVisibleItemPosition() == lfAdapter.getItemCount()
                 - 1)
-                && currentLastNum != layoutManager.findLastVisibleItemPosition() && num > 0 && adapter.getItemCount() > num) {
+                && currentLastNum != layoutManager.findLastVisibleItemPosition()
+                && num > 0 && adapter.getItemCount() > num
+                && !mPullLoading) {
+
             currentLastNum = layoutManager.findLastVisibleItemPosition();
+            mPullLoading = true;
             startLoadMore();
         }
         if (scrollerListener != null) {
@@ -424,7 +427,7 @@ public class LFRecyclerView extends RecyclerView {
         }
     }
 
-    public interface LFRecyclerViewScrollChange  {
+    public interface LFRecyclerViewScrollChange {
         void onRecyclerViewScrollChange(View view, int i, int i1);
     }
 
