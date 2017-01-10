@@ -97,6 +97,8 @@ public class LFRecyclerView extends RecyclerView {
     @Override
     public void setAdapter(Adapter adapter) {
         this.adapter = adapter;
+        if(observer==null)
+            observer = new LFAdapterDataObserver();
         adapter.registerAdapterDataObserver(observer);
         lfAdapter = new LFRecyclerViewAdapter(getContext(), adapter);
         lfAdapter.setRecyclerViewHeader(recyclerViewHeader);
