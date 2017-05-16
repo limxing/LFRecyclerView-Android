@@ -8,12 +8,22 @@ RecyclerView的下拉刷新,上拉加载,也不需要关心点击长按事件
 
 
 
-使用和ListView一样
+使用和ListView一样 [![](https://jitpack.io/v/limxing/LFRecyclerView-Android.svg)](https://jitpack.io/#limxing/LFRecyclerView-Android)
+
 ```
 
 引入
-compile 'me.leefeng:lfrecyclerview:1.0.1'
-
+//compile 'me.leefeng:lfrecyclerview:1.0.4'
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+}
+	dependencies {
+    	        compile 'com.github.limxing:LFRecyclerView-Android:1.0.1'
+    }
+    	
 /*找到控件*/
 recycleview = (LFRecyclerView) findViewById(R.id.recycleview);
 
