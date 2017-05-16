@@ -28,7 +28,7 @@ allprojects {
 recycleview = (LFRecyclerView) findViewById(R.id.recycleview);
 
 /*设置属性*/
-recycleview.setLoadMore(true);//设置为可上拉加载,默认false
+recycleview.setLoadMore(true);//设置为可上拉加载,默认false,调用这个方法false可以去掉底部的“加载更多”
  recycleview.setRefresh(true);// 设置为可下拉刷新,默认true
 recycleview.setAutoLoadMore(true);//设置滑动到底部自动加载,默认false
 recycleview.setOnItemClickListener(this);// 条目点击,点击和长按监听
