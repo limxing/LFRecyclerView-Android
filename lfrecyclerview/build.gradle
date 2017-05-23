@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'//添加
+//apply plugin: 'com.novoda.bintray-release'//添加
 
 android {
     compileSdkVersion 24
@@ -31,14 +31,14 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.0.0'
 }
 //添加jcenter
-publish {
-    userOrg = 'limxing'//bintray.com用户名
-    groupId = 'me.leefeng'//jcenter上的路径
-    artifactId = 'lfrecyclerview'//项目名称
-    publishVersion = '1.0.4'//版本号
-    desc = '下拉刷新的RecycleView'//描述，不重要
-    website = 'https://github.com/limxing/LFRecyclerView-Android'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
-}
+//publish {
+//    userOrg = 'limxing'//bintray.com用户名
+//    groupId = 'me.leefeng'//jcenter上的路径
+//    artifactId = 'lfrecyclerview'//项目名称
+//    publishVersion = '1.0.4'//版本号
+//    desc = '下拉刷新的RecycleView'//描述，不重要
+//    website = 'https://github.com/limxing/LFRecyclerView-Android'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
+//}
 
 //./gradlew clean build bintrayUpload -PbintrayUser=limxing -PbintrayKey=50fddf0aeababc65b71d85c15c2230136e82cf0c -PdryRun=false
 //apply from: '../bintray.gradle'
