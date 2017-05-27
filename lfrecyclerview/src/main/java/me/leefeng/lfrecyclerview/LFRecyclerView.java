@@ -50,11 +50,18 @@ public class LFRecyclerView extends RecyclerView {
     private View headerView;
     private Adapter adapter;
     private LFAdapterDataObserver observer;
+    private View footView;
 
     public void setHeaderView(View headerView) {
         this.headerView = headerView;
         if (lfAdapter != null) {
             lfAdapter.setHeaderView(headerView);
+        }
+    }
+    public void setFootView(View footView) {
+        this.footView = footView;
+        if (lfAdapter != null) {
+            lfAdapter.setFootView(footView);
         }
     }
 
@@ -105,6 +112,9 @@ public class LFRecyclerView extends RecyclerView {
         lfAdapter.setRecyclerViewFooter(recyclerViewFooter);
         if (headerView != null) {
             lfAdapter.setHeaderView(headerView);
+        }
+        if (footView != null) {
+            lfAdapter.setHeaderView(footView);
         }
         lfAdapter.setLoadMore(isLoadMore);
         lfAdapter.setRefresh(isRefresh);

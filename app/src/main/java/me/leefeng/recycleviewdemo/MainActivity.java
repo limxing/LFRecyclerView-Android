@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         setContentView(R.layout.activity_main);
 
         list = new ArrayList<String>();
-//        for (int i = 0; i < 10; i++) {
-//            list.add("leefeng.me" + i);
-//        }
+        for (int i = 0; i < 10; i++) {
+            list.add("leefeng.me" + i);
+        }
 
         recycleview = (LFRecyclerView) findViewById(R.id.recycleview);
         recycleview.setLoadMore(true);
@@ -55,6 +55,12 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         tv.setGravity(Gravity.CENTER);
         tv.setBackgroundColor(Color.RED);
         recycleview.setHeaderView(tv);
+         tv = new TextView(MainActivity.this);
+        tv.setText("这是底部");
+        tv.setTextColor(Color.WHITE);
+        tv.setGravity(Gravity.CENTER);
+        tv.setBackgroundColor(Color.RED);
+        recycleview.setFootView(tv);
     }
 
     @Override
