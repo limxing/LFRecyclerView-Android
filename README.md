@@ -21,7 +21,7 @@ allprojects {
 		}
 }
 	dependencies {
-    	        compile 'com.github.limxing:LFRecyclerView-Android:1.0.1'
+    	        compile 'com.github.limxing:LFRecyclerView-Android:1.0.2'
     }
     	
 /*找到控件*/
@@ -36,6 +36,7 @@ recycleview.setLFRecyclerViewListener(this);//下拉刷新上拉加载监听
 recycleview.setScrollChangeListener(this);//滑动监听
 recycleview.hideTimeView();//隐藏时间,默认显示时间
 recycleview.setHeaderView(tv);//设置一个头部,只有一个大概满足了多数的要求
+ recycleview.setFootView(tv);//设置一个底部
  recycleview.setNoDateShow();//没有数据时,底部显示"没有数据"字样,默认不显示
 
 /*添加适配器*/
