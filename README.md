@@ -12,7 +12,7 @@ RecyclerView的下拉刷新,上拉加载,也不需要关心点击长按事件
 
 ```
 
-引入
+引入 [![](https://jitpack.io/v/limxing/LFRecyclerView-Android.svg)](https://jitpack.io/#limxing/LFRecyclerView-Android)
 //compile 'me.leefeng:lfrecyclerview:1.0.4'
 allprojects {
 		repositories {
