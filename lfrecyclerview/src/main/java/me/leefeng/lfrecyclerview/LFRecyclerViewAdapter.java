@@ -62,6 +62,7 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
         } else {
             mHeaderCount = 0;
         }
+
     }
 
     public void setLoadMore(boolean loadMore) {
@@ -86,7 +87,7 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
             return new HeaderBottomHolder(recyclerViewFooter);
         } else if (viewType == ITEM_TYPE_HEADERVIEW) {
             return new HeaderBottomHolder(headerView);
-        }else if(viewType == ITEM_TYPE_FOOTVIEW){
+        } else if (viewType == ITEM_TYPE_FOOTVIEW) {
             return new HeaderBottomHolder(footView);
         }
         return adapter.onCreateViewHolder(parent, viewType);
@@ -98,7 +99,7 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
 
     public int getHFCount() {
 //        return getheaderViewCount() + mBottomCount + getFootViewCount();
-        return getheaderViewCount()  + getFootViewCount();
+        return getheaderViewCount() + getFootViewCount();
     }
 
 
@@ -160,9 +161,9 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
         } else if (isCustomHeaderView(position)) {
             //内容View
             return ITEM_TYPE_HEADERVIEW;
-        } else if (isCustomFootView(position)){
+        } else if (isCustomFootView(position)) {
             return ITEM_TYPE_FOOTVIEW;
-        }else{
+        } else {
             return ITEM_TYPE_CONTENT;
         }
     }
@@ -175,23 +176,24 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
 
     //判断当前item是否是FooterView
     public boolean isBottomView(int position) {
-        return mBottomCount != 0 && position >= (getheaderViewCount() + adapter.getItemCount()+getFootViewCount()-mBottomCount);
+        return mBottomCount != 0 && position >= (getheaderViewCount() + adapter.getItemCount() + getFootViewCount() - mBottomCount);
     }
 
     //判断当前是否是自定义头部View
     public boolean isCustomHeaderView(int position) {
         return headerView != null && position == mHeaderCount;
     }
+
     //判断当前是否是自定义头部View
     public boolean isCustomFootView(int position) {
-        return footView != null && position == getheaderViewCount()+adapter.getItemCount();
+        return footView != null && position == getheaderViewCount() + adapter.getItemCount();
     }
 
     public int getheaderViewCount() {
-        int count = 0;
-        if (isRefresh) {
-            count += 1;
-        }
+        int count = mHeaderCount;
+//        if (isRefresh) {
+//            count += 1;
+//        }
         if (headerView != null) {
             count += 1;
         }
@@ -200,10 +202,10 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
 
 
     public int getFootViewCount() {
-        int count = 0;
-        if (isLoadMore) {
-            count += 1;
-        }
+        int count = mBottomCount;
+//        if (isLoadMore) {
+//            count += 1;
+//        }
         if (footView != null) {
             count += 1;
         }
