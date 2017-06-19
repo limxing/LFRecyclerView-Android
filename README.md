@@ -21,7 +21,7 @@ allprojects {
 		}
 }
 	dependencies {
-    	        compile 'com.github.limxing:LFRecyclerView-Android:1.0.2'
+    	        compile 'com.github.limxing:LFRecyclerView-Android:1.0.3'
     }
     	
 /*找到控件*/
