@@ -1,22 +1,25 @@
 package me.leefeng.lfrecyclerview;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.util.AttributeSet;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
 import java.lang.ref.SoftReference;
 
 /**
  * Created by limxing on 16/7/23.
- *
+ * <p>
  * https://github.com/limxing
  * Blog: http://www.leefeng.me
  */
 public class LoadView extends ImageView {
-    private MyRunable runnable;
+    //    private MyRunable runnable;
     private int width;
     private int height;
 
@@ -38,19 +41,21 @@ public class LoadView extends ImageView {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (runnable!=null){
-            runnable.stopload();
-        }
-        runnable = null;
+        stop();
+//        if (runnable!=null){
+//            runnable.stopload();
+//        }
+//        runnable = null;
     }
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        runnable = new MyRunable(this);
-        if (runnable != null && !runnable.flag) {
-            runnable.startload();
-        }
+        start();
+//        runnable = new MyRunable(this);
+//        if (runnable != null && !runnable.flag) {
+//            runnable.startload();
+//        }
     }
 
     private void init() {
@@ -61,41 +66,75 @@ public class LoadView extends ImageView {
         height = bitmap.getHeight() / 2;
     }
 
-    static class MyRunable implements Runnable {
-        private boolean flag;
-        private SoftReference<LoadView> loadingViewSoftReference;
-        private float degrees = 0f;
-        private Matrix max;
+    /**
+     * loading start
+     */
+    private Matrix max;
+    private ValueAnimator animator;
 
-        public MyRunable(LoadView loadingView) {
-            loadingViewSoftReference = new SoftReference<LoadView>(loadingView);
+    private void start() {
+        if (max == null || animator == null) {
             max = new Matrix();
-        }
-
-        @Override
-        public void run() {
-            if (loadingViewSoftReference.get().runnable != null && max != null) {
-                degrees += 30f;
-                max.setRotate(degrees, loadingViewSoftReference.get().width, loadingViewSoftReference.get().height);
-                loadingViewSoftReference.get().setImageMatrix(max);
-                if (degrees == 360) {
-                    degrees = 0;
+            animator = ValueAnimator.ofInt(0, 12);
+            animator.setDuration(12 * 80);
+            animator.setInterpolator(new LinearInterpolator());
+            animator.setRepeatCount(Animation.INFINITE);
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    float degrees = 30 * (Integer) valueAnimator.getAnimatedValue();
+                    max.setRotate(degrees, width, height);
+                    setImageMatrix(max);
                 }
-                if (flag) {
-                    loadingViewSoftReference.get().postDelayed(loadingViewSoftReference.get().runnable, 100);
-                }
-            }
+            });
         }
 
-        public void stopload() {
-            flag = false;
-        }
-
-        public void startload() {
-            flag = true;
-            if (loadingViewSoftReference.get().runnable != null && max != null) {
-                loadingViewSoftReference.get().postDelayed(loadingViewSoftReference.get().runnable, 100);
-            }
-        }
+        animator.start();
     }
+
+    private void stop() {
+        animator.cancel();
+        animator = null;
+        max = null;
+
+    }
+
+
+//    static class MyRunable implements Runnable {
+//        private boolean flag;
+//        private SoftReference<LoadView> loadingViewSoftReference;
+//        private float degrees = 0f;
+//        private Matrix max;
+//
+//        public MyRunable(LoadView loadingView) {
+//            loadingViewSoftReference = new SoftReference<LoadView>(loadingView);
+//            max = new Matrix();
+//        }
+//
+//        @Override
+//        public void run() {
+//            if (loadingViewSoftReference.get().runnable != null && max != null) {
+//                degrees += 30f;
+//                max.setRotate(degrees, loadingViewSoftReference.get().width, loadingViewSoftReference.get().height);
+//                loadingViewSoftReference.get().setImageMatrix(max);
+//                if (degrees == 360) {
+//                    degrees = 0;
+//                }
+//                if (flag) {
+//                    loadingViewSoftReference.get().postDelayed(loadingViewSoftReference.get().runnable, 100);
+//                }
+//            }
+//        }
+//
+//        public void stopload() {
+//            flag = false;
+//        }
+//
+//        public void startload() {
+//            flag = true;
+//            if (loadingViewSoftReference.get().runnable != null && max != null) {
+//                loadingViewSoftReference.get().postDelayed(loadingViewSoftReference.get().runnable, 100);
+//            }
+//        }
+//    }
 }

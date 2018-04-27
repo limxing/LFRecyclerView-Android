@@ -38,7 +38,7 @@ public class LFRecyclerViewFooter extends LinearLayout {
         initView(context);
     }
 
-    public int getmState(){
+    public int getmState() {
         return mState;
     }
 
@@ -131,6 +131,17 @@ public class LFRecyclerViewFooter extends LinearLayout {
         } else {
             lfrecyclerview_footer_state.setVisibility(View.GONE);
         }
+
+    }
+
+    public void setNoDateView(View view) {
+        lfrecyclerview_footer_state.removeAllViews();
+        lfrecyclerview_footer_state.addView(view);
+    }
+    public void setOnNodataViewListener(OnClickListener listener) {
+        lfrecyclerview_footer_state.setFocusable(true);
+        lfrecyclerview_footer_state.setClickable(true);
+        lfrecyclerview_footer_state.setOnClickListener(listener);
 
     }
 }

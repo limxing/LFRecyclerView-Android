@@ -45,6 +45,7 @@ public class LFRecyclerView extends RecyclerView {
     private boolean isNoDateShow = false;
     private LFRecyclerViewScrollChange scrollerListener;//滑动监听
     private boolean isAutoLoadMore;
+    private boolean noDataCanPull = true;
 
     /*添加头*/
     private View headerView;
@@ -104,7 +105,7 @@ public class LFRecyclerView extends RecyclerView {
     @Override
     public void setAdapter(Adapter adapter) {
         this.adapter = adapter;
-        if(observer==null)
+        if (observer == null)
             observer = new LFAdapterDataObserver();
         adapter.registerAdapterDataObserver(observer);
         lfAdapter = new LFRecyclerViewAdapter(getContext(), adapter);
@@ -379,7 +380,9 @@ public class LFRecyclerView extends RecyclerView {
 
     public void setLoadMore(boolean b) {
         this.isLoadMore = b;
-        if (!isLoadMore) {
+        if (isLoadMore) {
+            recyclerViewFooter.show();
+        } else {
             recyclerViewFooter.hide();
         }
 
@@ -507,15 +510,34 @@ public class LFRecyclerView extends RecyclerView {
         }
         boolean b = lfAdapter.getItemCount() <= (lfAdapter.getHFCount());
         recyclerViewFooter.setNoneDataState(b);
+        if (!noDataCanPull && isRefresh)
+            this.isRefresh = !b;
         if (b) {
             recyclerViewFooter.hide();
         } else {
             recyclerViewFooter.show();
         }
-        if (!isLoadMore) {
+        if (isLoadMore) {
+            recyclerViewFooter.show();
+        } else {
             recyclerViewFooter.hide();
         }
     }
 
+    public void setNoDateView(View view) {
+        recyclerViewFooter.setNoDateView(view);
 
+    }
+
+    /**
+     * 没有数据是否可以下拉刷新
+     *
+     * @param noDataCanPull
+     */
+    public void setNoDataCanPull(boolean noDataCanPull) {
+        this.noDataCanPull = noDataCanPull;
+    }
+    public void setNoDataViewClickListener(OnClickListener listener) {
+        recyclerViewFooter.setOnNodataViewListener(listener);
+    }
 }

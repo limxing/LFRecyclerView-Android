@@ -1,13 +1,13 @@
 apply plugin: 'com.android.library'
-//apply plugin: 'com.novoda.bintray-release'//添加
+apply plugin: 'com.github.dcendents.android-maven'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 27
+
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 24
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -26,20 +26,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:24.2.0'
+    compile 'com.android.support:appcompat-v7:27.1.1'
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:recyclerview-v7:24.0.0'
+    compile 'com.android.support:recyclerview-v7:27.1.1'
 }
-//添加jcenter
-//publish {
-//    userOrg = 'limxing'//bintray.com用户名
-//    groupId = 'me.leefeng'//jcenter上的路径
-//    artifactId = 'lfrecyclerview'//项目名称
-//    publishVersion = '1.0.4'//版本号
-//    desc = '下拉刷新的RecycleView'//描述，不重要
-//    website = 'https://github.com/limxing/LFRecyclerView-Android'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
-//}
-
-//./gradlew clean build bintrayUpload -PbintrayUser=limxing -PbintrayKey=50fddf0aeababc65b71d85c15c2230136e82cf0c -PdryRun=false
-//apply from: '../bintray.gradle'
-//apply from: "https://raw.githubusercontent.com/xiaopansky/android-library-publish-to-jcenter/master/bintrayUpload.gradle"
