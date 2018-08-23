@@ -4,14 +4,25 @@ RecyclerView的下拉刷新,上拉加载,也不需要关心点击长按事件
 欢迎大家尝试使用!欢迎提BUG
 
 <img src="http://www.leefeng.me/GIF.gif"/>
-<img src="http://www.leefeng.me/leefeng1.jpg"/>
+<!-- <img src="http://www.leefeng.me/leefeng1.jpg"/> -->
 
+引入 [![](https://jitpack.io/v/limxing/LFRecyclerView-Android.svg)](https://jitpack.io/#limxing/LFRecyclerView-Android)
+#### Gradle
+Project level build.gradle
 
-
-
-
-
-引入
+```
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+App level build.gradle
+```
+dependencies {
+	implementation 'com.github.limxing:LFRecyclerView-Android:1.0.5'
+}
+```
 
 ```
 /*找到控件*/
