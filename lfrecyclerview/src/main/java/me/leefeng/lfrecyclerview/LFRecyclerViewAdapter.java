@@ -16,8 +16,8 @@ import android.view.ViewGroup;
 public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
 
     //item类型
-    public static final int ITEM_TYPE_HEADER = 0;
-    public static final int ITEM_TYPE_CONTENT = 1;
+    private static final int ITEM_TYPE_HEADER = 0;
+    private static final int ITEM_TYPE_CONTENT = 1;
     public static final int ITEM_TYPE_BOTTOM = 2;
     public static final int ITEM_TYPE_HEADERVIEW = 3;
     private static final int ITEM_TYPE_FOOTVIEW = 4;
@@ -77,7 +77,7 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
 
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         if (viewType == ITEM_TYPE_HEADER) {
             return new HeaderBottomHolder(recyclerViewHeader);
@@ -111,7 +111,7 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         if (isHeaderView(position) || isBottomView(position) || isCustomHeaderView(position) || isCustomFootView(position)) {
             return;
         }

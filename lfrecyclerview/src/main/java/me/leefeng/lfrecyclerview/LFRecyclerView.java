@@ -4,8 +4,10 @@ import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.RelativeLayout;
@@ -20,6 +22,7 @@ import android.widget.TextView;
  * Blog: http://www.leefeng.me
  */
 public class LFRecyclerView extends RecyclerView {
+    private static final String TAG = "LFRecyclerView";
     private Scroller mScroller;
     private LFRecyclerViewAdapter lfAdapter;
     private boolean isLoadMore;
@@ -59,11 +62,17 @@ public class LFRecyclerView extends RecyclerView {
             lfAdapter.setHeaderView(headerView);
         }
     }
+
     public void setFootView(View footView) {
         this.footView = footView;
         if (lfAdapter != null) {
             lfAdapter.setFootView(footView);
         }
+    }
+
+    public void setNoDateView(View view) {
+        recyclerViewFooter.setNoDateView(view);
+
     }
 
     public LFRecyclerView(Context context) {
@@ -84,6 +93,7 @@ public class LFRecyclerView extends RecyclerView {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+        Log.i(TAG, "onDetachedFromWindow: ");
 //        if (adapter!=null){
 //            adapter.unregisterAdapterDataObserver(observer);
 //        }
@@ -186,10 +196,13 @@ public class LFRecyclerView extends RecyclerView {
     public void stopRefresh(boolean isSuccess) {
 //        lfAdapter.notifyDataSetChanged();
         if (mPullRefreshing) {
+            long de = 1000;
             if (isSuccess) {
                 recyclerViewHeader.setState(LFRecyclerViewHeader.STATE_SUCCESS);
             } else {
                 recyclerViewHeader.setState(LFRecyclerViewHeader.STATE_FRESH_FAILT);
+//                recyclerViewHeader.setMessage(message);
+                de = 2000;
             }
             recyclerViewHeader.postDelayed(new Runnable() {
                 @Override
@@ -197,7 +210,7 @@ public class LFRecyclerView extends RecyclerView {
                     mPullRefreshing = false;
                     resetHeaderHeight();
                 }
-            }, 1000);
+            }, de);
 
         }
     }
@@ -328,7 +341,7 @@ public class LFRecyclerView extends RecyclerView {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 1);
         setLayoutManager(gridLayoutManager);
 //        setOnScrollChangeListener(this);
-        setOnScrollListener(new OnScrollListener() {
+        addOnScrollListener(new OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
 //                super.onScrolled(recyclerView, dx, dy);
@@ -514,6 +527,7 @@ public class LFRecyclerView extends RecyclerView {
             this.isRefresh = !b;
         if (b) {
             recyclerViewFooter.hide();
+
         } else {
             recyclerViewFooter.show();
         }
@@ -524,9 +538,8 @@ public class LFRecyclerView extends RecyclerView {
         }
     }
 
-    public void setNoDateView(View view) {
-        recyclerViewFooter.setNoDateView(view);
-
+    public int getheaderViewCount() {
+        return lfAdapter.getheaderViewCount();
     }
 
     /**
@@ -537,6 +550,7 @@ public class LFRecyclerView extends RecyclerView {
     public void setNoDataCanPull(boolean noDataCanPull) {
         this.noDataCanPull = noDataCanPull;
     }
+
     public void setNoDataViewClickListener(OnClickListener listener) {
         recyclerViewFooter.setOnNodataViewListener(listener);
     }

@@ -238,4 +238,9 @@ public class LFRecyclerViewHeader extends LinearLayout {
     public TextView getmHintTextView() {
         return mHintTextView;
     }
+
+    public void setMessage(String message) {
+        mHintTextView.setText(message);
+
+    }
 }

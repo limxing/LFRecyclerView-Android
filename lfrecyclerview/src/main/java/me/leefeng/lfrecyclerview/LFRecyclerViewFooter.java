@@ -3,6 +3,7 @@ package me.leefeng.lfrecyclerview;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -19,6 +20,7 @@ public class LFRecyclerViewFooter extends LinearLayout {
     public final static int STATE_NORMAL = 0;
     public final static int STATE_READY = 1;
     public final static int STATE_LOADING = 2;
+    private static final String TAG = "LFRecyclerViewFooter";
 
     private Context mContext;
     private int mState;
@@ -38,7 +40,7 @@ public class LFRecyclerViewFooter extends LinearLayout {
         initView(context);
     }
 
-    public int getmState() {
+    public int getmState(){
         return mState;
     }
 
@@ -114,6 +116,12 @@ public class LFRecyclerViewFooter extends LinearLayout {
         mProgressBar = moreView.findViewById(R.id.lfrecyclerview_footer_progressbar);
         mHintView = (TextView) moreView.findViewById(R.id.lfrecyclerview_footer_hint_textview);
         lfrecyclerview_footer_loadview = (LoadView) moreView.findViewById(R.id.lfrecyclerview_footer_loadview);
+        lfrecyclerview_footer_state.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     public TextView getmHintView() {
@@ -138,6 +146,20 @@ public class LFRecyclerViewFooter extends LinearLayout {
         lfrecyclerview_footer_state.removeAllViews();
         lfrecyclerview_footer_state.addView(view);
     }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        Log.i(TAG, "onDetachedFromWindow: ");
+//        mContext = null;
+//        mContentView = null;
+//        mProgressBar = null;
+//        mHintView = null;
+//        lfrecyclerview_footer_state = null;
+//        lfrecyclerview_footer_loadview = null;
+
+    }
+
     public void setOnNodataViewListener(OnClickListener listener) {
         lfrecyclerview_footer_state.setFocusable(true);
         lfrecyclerview_footer_state.setClickable(true);
